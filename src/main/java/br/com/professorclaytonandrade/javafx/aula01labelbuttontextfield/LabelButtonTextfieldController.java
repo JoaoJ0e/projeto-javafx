@@ -15,6 +15,4 @@ public class LabelButtonTextfieldController {
     public void clicarBotaoAtualizarResultado(){
         labelResultado.setText(textFieldNome.getText());
     }
-
-
 }
