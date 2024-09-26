@@ -9,4 +9,6 @@ module br.com.professorclaytonandrade.javafx {
     opens br.com.professorclaytonandrade.javafx.aula01labelbuttontextfield to javafx.fxml;
     exports br.com.professorclaytonandrade.javafx.aula02checkbox;
     opens br.com.professorclaytonandrade.javafx.aula02checkbox to javafx.fxml;
+    exports br.com.professorclaytonandrade.javafx.aula03radiobuttontogglegroup;
+    opens br.com.professorclaytonandrade.javafx.aula03radiobuttontogglegroup to javafx.fxml;
 }

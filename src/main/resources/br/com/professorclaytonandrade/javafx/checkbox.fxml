@@ -7,7 +7,10 @@
 
 
 <?import javafx.scene.control.TextField?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.professorclaytonandrade.javafx.aula02checkbox.CheckboxController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/22"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="br.com.professorclaytonandrade.javafx.aula02checkbox.CheckboxController">
    <children>
       <Label layoutX="81.0" layoutY="191.0" text="Informe Sua Senha" />
       <TextField fx:id="textPassword" layoutX="210.0" layoutY="187.0" prefHeight="26.0" prefWidth="278.0" />
