@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../../styles/styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.professorclaytonandrade.javafx.conversor.ConversorController">
+   <children>
+      <Label layoutX="26.0" layoutY="52.0" text="Valor da Temperatura em °C" />
+      <TextField fx:id="valorTemperaturaField" layoutX="27.0" layoutY="77.0" onAction="#converterTemperatura" style="-fx-background-color: #909090;" />
+      <Label layoutX="26.0" layoutY="135.0" text="°C =" />
+      <Label fx:id="resultadoCelsiusLabel" layoutX="56.0" layoutY="135.0" prefHeight="17.0" prefWidth="106.0" textAlignment="CENTER" />
+      <Label layoutX="28.0" layoutY="162.0" text="°F =" />
+      <Label fx:id="resultadoFahrenheitLabel" layoutX="56.0" layoutY="162.0" prefHeight="17.0" prefWidth="106.0" textAlignment="CENTER" />
+      <Label layoutX="28.0" layoutY="188.0" text="°K =" />
+      <Label fx:id="resultadoKelvinLabel" layoutX="56.0" layoutY="188.0" prefHeight="17.0" prefWidth="106.0" textAlignment="CENTER" />
+      <Button fx:id="converterTemperaturaButton" layoutX="177.0" layoutY="77.0" mnemonicParsing="false" onAction="#converterTemperatura" text="Converter" />
+      <Label fx:id="erroLabel" layoutX="27.0" layoutY="103.0" prefHeight="17.0" prefWidth="149.0" style="-fx-background-color: #232323;">
+         <textFill>
+            <LinearGradient cycleMethod="REFLECT" endX="0.8293838862559242" endY="0.943127962085308" startY="0.7914691943127963">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.25" green="0.13078702986240387" blue="0.13078702986240387" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="18.0" layoutY="21.0" text="Conversor Manual" />
+      <Label layoutX="316.0" layoutY="21.0" text="PREVISÃO DO TEMPO PARA HOJE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label fx:id="maxTempLabel" layoutX="329.0" layoutY="120.0" prefHeight="17.0" prefWidth="58.0" textAlignment="CENTER" />
+      <Label fx:id="minTempLabel" layoutX="414.0" layoutY="120.0" prefHeight="17.0" prefWidth="58.0" />
+      <Label layoutX="336.0" layoutY="96.0" text="Máxima:" />
+      <Label layoutX="422.0" layoutY="96.0" text="Mínima:" />
+      <Label layoutX="518.0" layoutY="96.0" text="Média:" />
+      <Label fx:id="medTempLabel" layoutX="507.0" layoutY="120.0" prefHeight="17.0" prefWidth="58.0" />
+      <VBox layoutX="316.0" layoutY="52.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+         <!-- Criando o ChoiceBox -->
+         <ChoiceBox fx:id="meuChoiceBox" prefHeight="25.0" prefWidth="254.0">
+            <!-- Itens diretamente no FXML -->
+            <items>
+               <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Tubarão" />
+                  <String fx:value="Capiva" />
+                  <String fx:value="Jaguaruna" />
+                  <String fx:value="Sangão" />
+               </FXCollections>
+            </items>
+         </ChoiceBox>
+      </VBox>
+      <Label layoutX="304.0" layoutY="121.0" text="°C =" />
+      <Label layoutX="305.0" layoutY="160.0" text="°F =" />
+      <Label layoutX="305.0" layoutY="202.0" text="°K =" />
+      <Label fx:id="maxTempLabelF" layoutX="329.0" layoutY="159.0" prefHeight="17.0" prefWidth="58.0" />
+      <Label fx:id="maxTempLabelK" layoutX="329.0" layoutY="202.0" prefHeight="17.0" prefWidth="58.0" />
+      <Label fx:id="minTempLabelF" layoutX="414.0" layoutY="161.0" prefHeight="17.0" prefWidth="58.0" />
+      <Label fx:id="minTempLabelK" layoutX="415.0" layoutY="202.0" prefHeight="17.0" prefWidth="58.0" />
+      <Label fx:id="medTempLabelF" layoutX="508.0" layoutY="161.0" prefHeight="17.0" prefWidth="58.0" />
+      <Label fx:id="medTempLabelK" layoutX="508.0" layoutY="202.0" prefHeight="17.0" prefWidth="58.0" />
+      <Line endX="157.0" layoutX="443.0" layoutY="145.0" startX="-138.0" stroke="#00ffe5" />
+      <Line endX="157.0" layoutX="443.0" layoutY="192.0" startX="-138.0" stroke="#00ff70" />
+      <Line endX="157.0" layoutX="443.0" layoutY="229.0" startX="-138.0" stroke="#aeff00" />
+      <Line endX="-163.0" endY="145.0" layoutX="463.0" layoutY="255.0" startX="-163.0" startY="-255.0" stroke="#ff00a9" />
+   </children>
+</AnchorPane>

@@ -14,6 +14,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.rmi.UnexpectedException;
 
 public class ConversorController {
 
@@ -45,37 +46,61 @@ public class ConversorController {
     @FXML
     private Label minTempLabel;
 
+    @FXML
+    private Label medTempLabel;
+
+    @FXML
+    private Label maxTempLabelF;
+
+    @FXML
+    private Label minTempLabelF;
+
+    @FXML
+    private Label medTempLabelF;
+
+    @FXML
+    private Label maxTempLabelK;
+
+    @FXML
+    private Label minTempLabelK;
+
+    @FXML
+    private Label medTempLabelK;
+
     private double temperaturaMaxima;
     private double temperaturaMinima;
+    private double temperaturaMaximaF;
+    private double temperaturaMinimaF;
+    private double temperaturaMaximaK;
+    private double temperaturaMinimaK;
 
     private String apiLink;
-
-    //TODO: Fazer escolha da caixa de texto mudar a cidade
-    //TODO: Mostrar corretamente temp max, min, med e % chuva
 
     // Métodos
     public void initialize() {
         try {
-            // Chama o método para obter a previsão do tempo
-            obterPrevisaoDoTempo();
-            maxTempLabel.setText(temperaturaMaxima+"");
-            minTempLabel.setText(temperaturaMinima+"");
-
             configEscolhaCidade();
-
-
-        } catch (IOException | InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
 
+    public Double converteCelciusParaFahrenheit(Double tempCelcius) {
+        Double tempFahrenheit = (tempCelcius * 9/5) + 32;
+        return tempFahrenheit;
+    }
+    public Double converteCelciusParaKelvin(Double tempCelcius) {
+        Double tempKelvin = tempCelcius + 273.15;
+        return tempKelvin;
+    }
+
     public void converterTemperatura(javafx.event.ActionEvent actionEvent) {
         try {
             // Converte as Temperaturas
             Double tempCelcius = Double.parseDouble(valorTemperaturaField.getText());
-            Double tempFahrenheit = (tempCelcius * 9/5) + 32;
-            Double tempKelvin = tempCelcius + 273.15;
+            Double tempFahrenheit = converteCelciusParaFahrenheit(tempCelcius);
+            Double tempKelvin = converteCelciusParaKelvin(tempCelcius);
 
             // Mostra na Tela
             resultadoCelsiusLabel.setText(tempCelcius+"");
@@ -86,12 +111,12 @@ public class ConversorController {
             erroLabel.setText("BOTA UM NUMERO, BURRO!");
         }
     }
-
     public void limpaCampos() {
         resultadoCelsiusLabel.setText("");
         resultadoKelvinLabel.setText("");
         resultadoFahrenheitLabel.setText("");
     }
+
     public void obterPrevisaoDoTempo(String apiLink) throws IOException, InterruptedException {
         String url = apiLink;
 
@@ -112,20 +137,56 @@ public class ConversorController {
 
         temperaturaMaxima = temperatureMaxArray.getDouble(0);
         temperaturaMinima = temperatureMinArray.getDouble(0);
+
+        atualizaCamposPrevisao();
+    }
+    private void atualizaCamposPrevisao() {
+
+        // °C
+        maxTempLabel.setText(temperaturaMaxima + "");
+        minTempLabel.setText(temperaturaMinima + "");
+        medTempLabel.setText(calculaMediaArredondada(temperaturaMaxima, temperaturaMinima) + "");
+
+        // °F
+        temperaturaMaximaF = converteCelciusParaFahrenheit(temperaturaMaxima);
+        temperaturaMinimaF = converteCelciusParaFahrenheit(temperaturaMinima);
+        maxTempLabelF.setText(temperaturaMaximaF + "");
+        minTempLabelF.setText(temperaturaMinimaF + "");
+        medTempLabelF.setText(converteCelciusParaFahrenheit(calculaMediaArredondada(temperaturaMaxima, temperaturaMinima)) + ""); // Média em °F
+
+        // °K
+        temperaturaMaximaK = converteCelciusParaKelvin(temperaturaMaxima);
+        temperaturaMinimaK = converteCelciusParaKelvin(temperaturaMinima);
+        maxTempLabelK.setText(temperaturaMaximaK + "");
+        minTempLabelK.setText(temperaturaMinimaK + "");
+        medTempLabelK.setText(converteCelciusParaKelvin(calculaMediaArredondada(temperaturaMaxima, temperaturaMinima)) + ""); // Média em °K
     }
 
+
+    private Double calculaMediaArredondada(Double numero1, Double numero2) {
+
+        double media = (numero1 + numero2) / 2.0;
+        String mediaArrendodada = String.format("%.2f", media);
+        mediaArrendodada = mediaArrendodada.replace(',', '.');
+        return Double.parseDouble(mediaArrendodada);
+    }
     private void configEscolhaCidade() {
         // Configurando a opção padrão
-        meuChoiceBox.setValue("Cidade");
+        meuChoiceBox.setValue("Escolha uma cidade");
 
         // Lidando com a seleção de um item
         meuChoiceBox.setOnAction(event -> {
             String selected = meuChoiceBox.getValue().toString();
-            System.out.println("Selecionado: " + selected);
+            atualizarLinkDaAPI(selected);
+            try {
+                obterPrevisaoDoTempo(apiLink);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
-
-    // Método para atualizar o link da API com base na opção escolhida
     private void atualizarLinkDaAPI(String opcao) {
         switch (opcao) {
             case "Capivari":
@@ -141,16 +202,5 @@ public class ConversorController {
                 apiLink = "https://api.open-meteo.com/v1/forecast?latitude=-28.4667&longitude=-49.0069&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&forecast_days=1";
                 break;
         }
-
-        try {
-            obterPrevisaoDoTempo(apiLink);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
     }
-
-    // api do tempo (
-    //https://api.open-meteo.com/v1/forecast?latitude=-28.4667&longitude=-49.0069&daily=temperature_2m_max,temperature_2m_min&timezone=America%2FSao_Paulo&forecast_days=1
 }

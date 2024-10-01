@@ -1,0 +1,20 @@
+.root {
+    -fx-background-color: #232323; /* Cor de fundo */
+    -fx-text-fill: #fefefe; /* Cor da fonte */
+    -fx-font-family: "Segoe UI"; /* Fonte */
+}
+
+.label {
+    -fx-text-fill: #fefefe; /* Cor da fonte para Labels */
+    -fx-background-color: #303030;
+    -fx-background-radius: 10px;
+}
+
+.button {
+    -fx-text-fill: #fefefe; /* Cor da fonte para Botões */
+}
+
+.text-field {
+    -fx-text-fill: #fefefe; /* Cor da fonte para TextFields */
+    -fx-background-color: #232323; /* Cor de fundo para TextFields */
+}

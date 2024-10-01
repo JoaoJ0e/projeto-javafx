@@ -5,10 +5,11 @@ module br.com.professorclaytonandrade.javafx {
     requires java.desktop;
     requires java.net.http;
     requires org.json;
+    requires java.rmi;
 
 
-    opens br.com.professorclaytonandrade.javafx to javafx.fxml;
-    exports br.com.professorclaytonandrade.javafx;
+    opens javafx to javafx.fxml;
+    exports javafx;
     exports br.com.professorclaytonandrade.javafx.aula01labelbuttontextfield;
     opens br.com.professorclaytonandrade.javafx.aula01labelbuttontextfield to javafx.fxml;
     exports br.com.professorclaytonandrade.javafx.aula02checkbox;
