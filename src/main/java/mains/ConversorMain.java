@@ -1,12 +1,12 @@
-package javafx;
-
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+package mains;
 
 import java.io.IOException;
+
+import mains.application.Application;
+import mains.fxml.FXMLLoader;
+import mains.scene.Parent;
+import mains.scene.Scene;
+import mains.stage.Stage;
 
 public class ConversorMain extends Application {
     @Override
