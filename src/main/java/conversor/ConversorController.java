@@ -3,11 +3,11 @@ package conversor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import mains.fxml.FXML;
-import mains.scene.control.Button;
-import mains.scene.control.ChoiceBox;
-import mains.scene.control.Label;
-import mains.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
