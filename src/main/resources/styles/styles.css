@@ -10,6 +10,11 @@
     -fx-background-radius: 10px;
 }
 
+#erroLabel {
+    -fx-text-fill: linear-gradient(from 0.0% 79.1469% to 82.9384% 94.3128%, reflect, #FF0000 0.0%, #ffffff 100.0%);
+    -fx-background-color: #232323;
+}
+
 .button {
     -fx-text-fill: #fefefe; /* Cor da fonte para Botões */
 }

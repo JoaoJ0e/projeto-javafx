@@ -96,8 +96,13 @@ public class ConversorController {
         return tempKelvin;
     }
 
+    // Chamado na conversão personalisada
     public void converterTemperatura(javafx.event.ActionEvent actionEvent) {
         try {
+            if (!erroLabel.getText().isBlank()) {
+                erroLabel.setText("");
+            }
+
             // Converte as Temperaturas
             Double tempCelcius = Double.parseDouble(valorTemperaturaField.getText());
             Double tempFahrenheit = converteCelciusParaFahrenheit(tempCelcius);
@@ -109,7 +114,7 @@ public class ConversorController {
             resultadoKelvinLabel.setText(tempKelvin+"");
         } catch (Exception e) {
             limpaCampos();
-            erroLabel.setText("BOTA UM NUMERO, BURRO!");
+            erroLabel.setText("Temperatura são *números*. Insira um, por favor");
         }
     }
     public void limpaCampos() {
@@ -117,7 +122,6 @@ public class ConversorController {
         resultadoKelvinLabel.setText("");
         resultadoFahrenheitLabel.setText("");
     }
-
     public void obterPrevisaoDoTempo(String apiLink) throws IOException, InterruptedException {
         String url = apiLink;
 
@@ -162,8 +166,6 @@ public class ConversorController {
         minTempLabelK.setText(temperaturaMinimaK + "");
         medTempLabelK.setText(converteCelciusParaKelvin(calculaMediaArredondada(temperaturaMaxima, temperaturaMinima)) + ""); // Média em °K
     }
-
-
     private Double calculaMediaArredondada(Double numero1, Double numero2) {
 
         double media = (numero1 + numero2) / 2.0;
