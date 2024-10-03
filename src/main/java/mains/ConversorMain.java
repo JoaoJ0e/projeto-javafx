@@ -15,7 +15,7 @@ public class ConversorMain extends Application {
         Scene scene = new Scene(parent);
         scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
 
-        stage.setTitle("W34TH3R M4N");
+        stage.setTitle("Seis e Ônibus");
         stage.setScene(scene);
         stage.show();
     }
